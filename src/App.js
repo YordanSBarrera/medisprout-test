@@ -1,28 +1,37 @@
-import { Button } from "@mui/material";
+//import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 
 function App() {
   const [data, setData] = useState([]);
-  const [loading,SetLoading]=useState(false);
+  const [loading, SetLoading] = useState(false);
   useEffect(() => {
-    SetLoading(true)
-    setTimeout(() => {
-      setData("Yordan");
-    }, 1000);
+    SetLoading(true);
 
-    fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-  .then(response => response.json())
-  .then(data => console.log(setData(data)));
-  SetLoading(false);
+    fetch("https://jsonplaceholder.typicode.com/posts/1/comments")
+      .then((response) => response.json())
+      .then((data) => console.log(setData(data)));
+    SetLoading(false);
+   
   }, []);
 
-  
   return (
     <div className="App">
-      {console.log(data)}
-      {loading?"ahflkjahschbuygew":"Cargando"}
-      <Button>MaterialUI</Button>
-     
+      { console.log(data)}
+      {loading ? (
+        "Loading"
+      ) : (
+        <div>
+          {data.map((comment,index) => {
+            return (
+              <div key={comment.id}>
+                <h3>{comment.name}</h3>
+                <span>{comment.email}</span>
+                <p>{comment.body}</p>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
