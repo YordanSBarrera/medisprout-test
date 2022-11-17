@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
+  const [loading,SetLoading]=useState(false);
+  useEffect(() => {
+    SetLoading(true)
+    setTimeout(() => {
+      setData("Yordan");
+    }, 1000);
+
+    fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+  .then(response => response.json())
+  .then(data => console.log(setData(data)));
+  SetLoading(false);
+  }, []);
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {console.log(data)}
+      {loading?"ahflkjahschbuygew":"Cargando"}
+      <Button>MaterialUI</Button>
+     
     </div>
   );
 }
