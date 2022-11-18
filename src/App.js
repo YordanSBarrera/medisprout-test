@@ -1,30 +1,14 @@
-import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
-
-function App() {
-  const [data, setData] = useState([]);
-  const [loading,SetLoading]=useState(false);
-  useEffect(() => {
-    SetLoading(true)
-    setTimeout(() => {
-      setData("Yordan");
-    }, 1000);
-
-    fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-  .then(response => response.json())
-  .then(data => console.log(setData(data)));
-  SetLoading(false);
-  }, []);
-
-  
+import CommentsList from "./component/commentsList";
+import {Routes,Route} from 'react-router-dom';
+import Borrar from "./component/borrar.jsx";
+const App = () => {
+  console.log("testing");
   return (
-    <div className="App">
-      {console.log(data)}
-      {loading?"ahflkjahschbuygew":"Cargando"}
-      <Button>MaterialUI</Button>
-     
-    </div>
+    <Routes>
+      <Route path="/" element={<Borrar />} />
+      <Route exact path="/lista" element={<CommentsList />} />
+      {/* <Route exact path="/test" element={<>} /> */}
+    </Routes>
   );
-}
-
+};
 export default App;
