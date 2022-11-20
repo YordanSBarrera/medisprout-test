@@ -5,19 +5,19 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 
-export  const  CardSimple=(name,email,body)=> {
+export  const  CardSimple=(props)=> {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {name}
+          {props.name}
         </Typography>
        
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {email}
+          {props.email}
         </Typography>
         <Typography variant="body2">
-         {body}
+         {props.body}
         </Typography>
       </CardContent>
      
