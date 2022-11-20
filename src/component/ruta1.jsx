@@ -1,17 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate, redirect } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { commentsList } from "../redux/commentSlice";
 import { loadingState } from "../redux/loadingSlice";
-
-// const pasandoDatosACard = (comment) => {
-//   let name = comment.name.substring(0, 20);
-//   if (comment.name.length > 20) name += "...";
-//   const email = comment.email;
-//   let body = comment.body.substring(0, 30);
-//   if (comment.body.length > 30) body += "...";
-//   return <Card name={name} email={email} body={body} />;
-// };
+import { CardSimple } from "./card";
+import "../app.css";
 
 export const Ruta1 = () => {
   const loading = useSelector(loadingState);
@@ -19,16 +12,33 @@ export const Ruta1 = () => {
   console.log(comments);
   console.log(loading);
 
- 
+  const printCard = (comment) => {
+    let commentName = comment.name.substring(0, 20);
+    if (comment.name.length > 20) commentName += "...";
+    const commentEmail = comment.email;
+    let commentBody = comment.body.substring(0, 30);
+    if (comment.body.length > 30) commentBody += "...";
+    return (
+      <CardSimple name={commentName} email={commentEmail} body={commentBody} />
+    );
+  };
 
   return (
     <div>
       <h1>RUTA1...</h1>
       {loading ? (
         comments ? (
-          <div>{comments.map((coment)=>{
-           return coment.name
-          })}</div>
+          <div>
+            {comments.map((coment) => {
+              return (
+                <div key={coment.id}>
+                  <NavLink to={`/ruta2/${coment.id}`}>
+                    {printCard(coment)}
+                  </NavLink>
+                </div>
+              );
+            })}
+          </div>
         ) : (
           "error en el redux"
         )
