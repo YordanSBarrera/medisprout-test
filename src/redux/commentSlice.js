@@ -1,14 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-  {
-    body: "Body",
-    email: "email@test.inical",
-    id: 1,
-    name: "inicial",
-    postId: 1,
-  },
-];
+const initialState = [{ Name: "Pedro" }];
 
 const commentsSlice = createSlice({
   name: "comments",
@@ -20,5 +12,6 @@ const commentsSlice = createSlice({
   },
 });
 export const { addComments } = commentsSlice.actions;
+export const commentsList = (state) => state.comments.slice(-1)[0];
 
 export default commentsSlice.reducer;
