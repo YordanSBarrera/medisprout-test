@@ -4,7 +4,7 @@ import { Navigate, NavLink } from "react-router-dom";
 import { commentsList } from "../redux/commentSlice";
 import { loadingState } from "../redux/loadingSlice";
 import { CardSimple } from "./card";
-import "../app.css";
+import "../style.css";
 
 export const Ruta1 = () => {
   const loading = useSelector(loadingState);

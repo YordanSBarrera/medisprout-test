@@ -1,7 +1,7 @@
 import { Button, Paper } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { commentsList } from "../redux/commentSlice";
 export const Ruta2 = () => {
   const { id } = useParams();
@@ -27,9 +27,12 @@ export const Ruta2 = () => {
         </Paper>
       </div>
       <div className="botonSucces">
-        <Button variant="contained" color="success" href="/ruta1">
-          Lista de Commentarios
-        </Button>
+        {/* No puedo usar la func href: del boton porque me recarga la pag */}
+        <Link to={"/ruta1"}>
+          <Button variant="contained" color="success">
+            Lista de Commentarios
+          </Button>
+        </Link>
       </div>
     </div>
   );

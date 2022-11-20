@@ -5,10 +5,9 @@ import { Navigate } from "react-router-dom";
 import { addComments } from "../redux/commentSlice";
 import { loadingOff, loadingOn, loadingState } from "../redux/loadingSlice";
 
-const Borrar = () => {
+const AuxLoad = () => {
   const dispatch = useDispatch();
   const loading = useSelector(loadingState);
-  let valor = useSelector(loadingState);
   const changeloadingOn = () => {
     dispatch(loadingOn());
     console.log(loading);
@@ -23,7 +22,9 @@ const Borrar = () => {
   console.log(loading);
 
   /***cargando los datos  */
+
   useEffect(() => {
+    dispatch(loadingOff());
     fetch("https://jsonplaceholder.typicode.com/posts/1/comments")
       .then((response) => response.json())
       .then((data) => {
@@ -33,12 +34,10 @@ const Borrar = () => {
   }, []);
   /******* */
   return (
-    <div>
-      "Yordan pag test"
-      <br />
-      <br />
-      Loading...{loading ? <Navigate to="/ruta1" /> : "Loading..."}
-      <br />
+    <div className="container">
+      <div className="loading">
+        Loading...{loading ? <Navigate to="/ruta1" /> : "Loading..."}
+      </div>
       <Button variant="contained" href="/ruta1">
         Ruta1
       </Button>
@@ -54,4 +53,4 @@ const Borrar = () => {
     </div>
   );
 };
-export default Borrar;
+export default AuxLoad;
