@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate} from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { commentsList } from "../redux/commentSlice";
 import { loadingState } from "../redux/loadingSlice";
 import { CardSimple } from "./card";
-import '../app.css';
+import "../app.css";
 
 export const Ruta1 = () => {
   const loading = useSelector(loadingState);
@@ -19,8 +19,7 @@ export const Ruta1 = () => {
     let commentBody = comment.body.substring(0, 30);
     if (comment.body.length > 30) commentBody += "...";
     return (
-       <CardSimple name={commentName} email={commentEmail} body={commentBody} />
-      // <CardSimple name={"commentName"} email={"commentEmail"} body={"commentBody"} />
+      <CardSimple name={commentName} email={commentEmail} body={commentBody} />
     );
   };
 
@@ -31,7 +30,13 @@ export const Ruta1 = () => {
         comments ? (
           <div>
             {comments.map((coment) => {
-              return <div key={coment.id}>{printCard(coment)}</div>;
+              return (
+                <div key={coment.id}>
+                  <NavLink to={`/ruta2/${coment.id}`}>
+                    {printCard(coment)}
+                  </NavLink>
+                </div>
+              );
             })}
           </div>
         ) : (

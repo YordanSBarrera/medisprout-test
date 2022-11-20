@@ -30,7 +30,7 @@ const App = () => {
     <Routes>     
       <Route exact path="/" element={<Borrar />} />
       <Route exact path="/ruta1" element={<Ruta1 />} />
-      <Route exact path="/ruta2" element={<Ruta2 />} />
+      <Route exact path="/ruta2/:id" element={<Ruta2 />} />
       <Route exact path="/lista" element={<CommentsList />} />
     </Routes>
   );
